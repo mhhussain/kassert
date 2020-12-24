@@ -4,7 +4,8 @@
   "description": "JWT Assertion Middleware",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:mon": "nodemon ./test.js"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,12 @@
   "bugs": {
     "url": "https://github.com/mhhussain/kassert/issues"
   },
-  "homepage": "https://github.com/mhhussain/kassert#readme"
+  "homepage": "https://github.com/mhhussain/kassert#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "yup": "^0.32.8"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
 }
