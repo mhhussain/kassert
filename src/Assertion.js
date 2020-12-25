@@ -13,7 +13,7 @@ class Assertion {
   }
 
   assert(header, token, signature) {
-    return this.assertFunction(this.check, token);
+    return this.assertFunction(this.check, { header, token, signature });
   }
 }
 

@@ -6,7 +6,7 @@ class StandardRoleAssertion extends Assertion {
     // of another.
     // I.e. 'D,A,C' and 'A,B,C,D,E,F' would assert to true
     //      'A,Q,E' and 'A,B,C,D,E,F' would assert to false
-    const assertFunction = (value, token) => {
+    const assertFunction = (value, { token }) => {
       const check = {};
       token.roles.split(',').forEach((v, i) => { check[v] = i; });
       return value.split(',').every(v => check[v] !== undefined);
