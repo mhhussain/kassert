@@ -1,6 +1,6 @@
 const e = require('express');
-const yup = require('yup');
 const kassert = require('./src/kassert');
+const StandardRoleAssertion = require('./src/StandardRoleAssertion');
 
 const app = e();
 app.use(e.json());
@@ -9,31 +9,10 @@ app.get('/ping', (req, res) => {
   res.json({ message: 'pong' });
 });
 
-const jwtTemplate = {
-  iss: '',
-  sub: '',
-  aud: [],
-  iat: 0,
-  exp: 0,
-  nbf: 0,
-  department: '',
-  mail: '',
-  name: '',
-  org: '',
-  roles: '',
-  userId: '',
-};
+app.use('/', kassert({ assertions: [new StandardRoleAssertion('ARM_User')] }));
 
-const roleAssertion = (value, token) => {
-  const check = {};
-  token.roles.split(',').forEach((v, i) => { check[v] = i; });
-  return value.split(',').every(v => check[v] !== undefined);
-};
-
-app.use(kassert({
-  assertions: {
-    role: roleAssertion,
-  },
-}));
+app.get('/', (req, res) => {
+  res.json({ message: 'success' });
+});
 
 app.listen(3001, () => { console.log('Listening at http://localhost:3001/'); });
